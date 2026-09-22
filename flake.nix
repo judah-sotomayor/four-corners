@@ -60,6 +60,7 @@
             packages = config.pre-commit.settings.enabledPackages ++ [
 
               # Add dependencies here
+              pkgs.ty
               (pkgs.python314.withPackages (
                 ps: with ps; [
                   fasthtml
