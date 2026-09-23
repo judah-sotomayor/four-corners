@@ -64,7 +64,8 @@
               (pkgs.python314.withPackages (
                 ps: with ps; [
                   fasthtml
-                  sqlalchemy
+                  passlib
+                  bcrypt
                 ]
               ))
             ];
