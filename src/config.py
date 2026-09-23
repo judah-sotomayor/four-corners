@@ -1,3 +1,3 @@
 import os
 
-SBS_DATABASE_FILE = os.environ["SBS_DATABASE_FILE"] or "data.sqlite3"
+FCR_DATABASE_FILE = os.environ["FCR_DATABASE_FILE"] or "data.sqlite3"
