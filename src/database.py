@@ -1,8 +1,8 @@
 from fastlite import database
 
-from config import SBS_DATABASE_FILE
+from config import FCR_DATABASE_FILE
 
-db = database(SBS_DATABASE_FILE)
+db = database(FCR_DATABASE_FILE)
 
 
 users = db.t.users
