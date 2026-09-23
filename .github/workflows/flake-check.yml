@@ -11,8 +11,8 @@ on:
       - master
 
 jobs:
-  check_nix:
-    name: Check TODOs API
+  lint:
+    name: Lint and Format
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
