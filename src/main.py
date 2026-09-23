@@ -1,5 +1,6 @@
 from fasthtml.common import *
 
+import auth_routes  # noqa: F401
 from auth import basic_auth
 
 app, rt = fast_app()
