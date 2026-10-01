@@ -1,0 +1,42 @@
+users: {
+  shape: sql_table
+  email: TEXT {constraint: primary_key}
+  password: TEXT
+}
+
+inventory_item: {
+  shape: sql_table
+  id: INT {constraint: primary_key}
+  name: TEXT
+  cost: NUMERIC
+  price: NUMERIC
+  sellable: BOOLEAN
+  description: TEXT
+}
+
+inventory_item_photo: {
+  shape: sql_table
+  id: INT {constraint: primary_key}
+  item: INT {constraint: foreign_key}
+  type: INT {constraint: foreign_key}
+  image: BLOB
+}
+
+image_type: {
+  shape: sql_table
+  id: INT {constraint: primary_key}
+  name: TEXT
+}
+
+inventory_item_photo.type <-> image_type.id: {
+  source-arrowhead.shape: cf-many
+  target-arrowhead.shape: cf-one-required
+}
+
+inventory_item_photo.item <-> inventory_item.id: {
+  source-arrowhead.shape: cf-many
+  target-arrowhead.shape: cf-one-required
+}
+
+# cf-one, cf-one-required (cf stands for crows foot)
+# cf-many, cf-many-required

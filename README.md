@@ -14,7 +14,10 @@ Once you've got Nix installed, you can enter this repo and run `nix develop` to 
 > Instructions to install are here: https://direnv.net
 
 The application can be launched with `python3 src/main.py`.
+
 Lints and formatters can be run with `nix fmt`.
+
+Diagrams can be displayed with `diagrams`
 
 When you go to make a git commit, git will automatically run the formats and lints for you. This is used to ensure QA checks are complete _before_ you push to github and cause an action run failure.
 

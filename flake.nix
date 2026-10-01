@@ -39,6 +39,7 @@
                 strict = true;
               };
 
+              d2.enable = true;
               ruff-check.enable = true;
               ruff-format.enable = true;
               mdformat.enable = true;
@@ -57,18 +58,38 @@
             shellHook = ''
               ${config.pre-commit.shellHook}
             '';
-            packages = config.pre-commit.settings.enabledPackages ++ [
+            packages =
+              with pkgs;
+              let
+                mkScript =
+                  name: text:
+                  let
+                    script = pkgs.writeShellScriptBin name text;
+                  in
+                  script;
+                # Add custom scripts and build commands here.
+                scripts = [
+                  (mkScript "diagrams" "d2 --watch --dark-theme 200 --scale 1 -l elk docs/data-model.d2")
+                  (mkScript "run" "python3 src/main.py")
+                ];
+              in
+              config.pre-commit.settings.enabledPackages
+              ++ scripts
+              ++ [
 
-              # Add dependencies here
-              pkgs.ty
-              (pkgs.python314.withPackages (
-                ps: with ps; [
-                  fasthtml
-                  passlib
-                  bcrypt
-                ]
-              ))
-            ];
+                # Add dependencies here
+                ty
+                sqlite
+                d2
+                (python314.withPackages (
+                  ps: with ps; [
+                    fasthtml
+                    peewee
+                    passlib
+                    bcrypt
+                  ]
+                ))
+              ];
           };
         };
     };
